@@ -121,8 +121,6 @@
         <!--begin::Container-->
         <div class="container-fluid">
           <!--begin::Start Navbar Links-->
-
-         
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
             <!--begin::Search (small screens: the field above is hidden, so link to the search page)-->
@@ -428,12 +426,12 @@
             <!--begin::Brand Image-->
             <img
               src="./assets/img/AdminLTELogo.png"
-              alt="AdminLTE Logo"
+              alt="Logo"
               class="brand-image opacity-75 shadow"
             />
             <!--end::Brand Image-->
             <!--begin::Brand Text-->
-            <span class="brand-text fw-light">AdminLTE 4</span>
+            <span class="brand-text fw-light">Listados</span>
             <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->
@@ -456,9 +454,25 @@
               <li class="nav-item">
                 <a href="?c=producto&a=mostrartodo" class="nav-link">
                   <i class="nav-icon bi bi-file-earmark"></i>
-                  <p>Listados Productos</p>
+                  <p>Productos</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="?c=marca&a=mostrarmarcas" class="nav-link">
+                  <i class="nav-icon bi bi-file-earmark"></i>
+                  <p>Marcas</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="?c=Venta&a=mostrartodo" class="nav-link">
+                  <i class="nav-icon bi bi-file-earmark"></i>
+                  <p>Ventas</p>
+                </a>
+              </li>
+
+
 
           </nav>
         </div>

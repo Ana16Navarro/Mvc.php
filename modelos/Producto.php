@@ -43,7 +43,7 @@ class Producto{
         }
     }
     
-    public function Insertar($datosProducto){
+    public function Insertar($datosProducto, $imagen ){
         try {
 
         $datos = array(
@@ -52,7 +52,7 @@ class Producto{
             $datosProducto['precio'],
             $datosProducto['costo'],
             $datosProducto['cantidad'],
-            $datosProducto['imagen'],
+            $imagen
         );
             $sql = "INSERT INTO productos(nombre,marca,precio,costo,cantidad,imagen) values(?,?,?,?,?,?)";
             return $this->pdo->prepare($sql)->execute($datos);
@@ -61,14 +61,14 @@ class Producto{
         }
     }
 
-    public function Actualizar($datosProducto){
+    public function Actualizar($datosProducto, $archivo){
         $datos = array(
             $datosProducto['nombre'],
             $datosProducto['marca'],
             $datosProducto['precio'],
             $datosProducto['costo'],
             $datosProducto['cantidad'],
-            $datosProducto['imagen'],
+            $archivo,
             $datosProducto['id']
 
         );
@@ -79,7 +79,7 @@ class Producto{
             precio = ?,
             costo = ?,
             cantidad = ?,
-            imagen =?,
+            imagen = ?
             WHERE id = ?;
 
         ";
@@ -102,7 +102,7 @@ class Producto{
     public function TraerPorId($id){
         try{
             $sql = "SELECT * FROM productos where id=?";
-            $consulta = this ->pdo->prepare($sql);
+            $consulta = $this->pdo->prepare($sql);
             $consulta->execute(array($id));
             return $consulta-> fetch(PDO::FETCH_OBJ);
          } catch (Exception $e){
@@ -110,5 +110,4 @@ class Producto{
         }
     }
     
-
 }

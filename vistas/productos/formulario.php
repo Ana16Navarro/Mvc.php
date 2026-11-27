@@ -1,25 +1,54 @@
-<form action="?c=producto&a=guardar" method="post">
-    <h3>Crear Producto</3>
+            <form action="?c=producto&a=Guardar" method="post" enctype="multipart/form-data">
+              <h3>Crear Producto</h3>
 
-    <input type ="hidden" name="id" value="<?=$producto?->id ?? ''?>">
+              <input type="hidden" name="id" value="<?= $producto?->id ?? "" ?>">
 
-    <label for= "nombre">Nombre<label>
-    <input type="text" name="nombre" value="<?=$producto?->nombre ?? '' ?>">
+              <label for="nombre">Nombre:</label>
+              <input type="text" name="nombre" value="<?= $producto?->nombre ?? "" ?>">
 
-    <label for= "marca">Marca<label>
-    <input type="text" name="marca" value="<?=$producto?->marca ?? ''?>">
+              <label for="marca">marca:</label>
+              <select name="marca" id="marca">
+                  <option value="">Seleccione una marca</option>
+                  <?php foreach ($marca as $m): ?>
+                      <option value="<?= $m->id ?>" <?= $m->id == $producto?->marca ? "selected" : "" ?>>
+                          <?= $m->nombre ?></option>
+                  <?php endforeach; ?>
+              </select>
 
-    <label for= "costo">Costo<label>
-    <input type="text" name="costo" value="<?=$producto?->costo ??''?>">
+              <label for="precio">Precio:</label>
+              <input type="text" name="precio" value="<?= $producto?->precio ?? "" ?>">
 
-    <label for= "precio">Precio<label>
-    <input type="text" name="precio" value="<?=$producto?->precio ??''?>">
+              <label for="costo">Costo:</label>
+              <input type="text" name="costo" value="<?= $producto?->costo ?? "" ?>">
 
-    <label for= "cantidad">Cantidad<label>
-    <input type="text" name="cantidad" value="<?=$producto?->cantidad ??''?>">
+              <label for="cantidad">Cantidad:</label>
+              <input type="text" name="cantidad" value="<?= $producto?->cantidad ?? "" ?>">
+              <div id="cajaImagen">
+                  <label for="imagen">Imagen:</label>
+                  <?php if ($producto?->imagen != ""): ?>
+                     <img src="assets/img/productos/<?= $producto->imagen ?>" 
+                     class="w-25" id="img-imagen" alt="">
+                      <button id="btn-cambiar" type="button">Cambiar Imagen</button>
+                  <?php else: ?>
+                      <input type="file" name="imagen" id="input-imagen">
+                  <?php endif; ?>
+              </div>
+                  <button type="submit">Guardar</button>
+          </form>
 
-    <label for= "imagen">Imagen<label>
-    <input type="text" name="imagen" value="<?=$producto?->imagen ??''?>">
+          <script>
+            let btnCambiar = document.getElementById("btn-cambiar")
+            let divImagen = document.getElementById("cajaImagen")
+            let imgImagen = document.getElementById("img-imagen")
 
-    <button type="submit">Guardar</button>
-</form>
+            btnCambiar.addEventListener("click", function(){
+              imgImagen.style.display ="none"  
+              btnCambiar.style.display ="none"
+               const inputImagen = document.createElement("input") 
+               inputImagen.className = "form-control"
+               inputImagen.type = "file"
+               inputImagen.name = "imagen"
+               inputImagen.id = "input-imagen"
+               divImagen.appendChild(inputImagen)
+          })      
+          </script>
